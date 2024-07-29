@@ -1,0 +1,60 @@
+import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class Student {
+    private JTextField txtStName;
+    private JButton CALButton;
+    private JTextField txtMark1;
+    private JTextField txtMark2;
+    private JTextField txtMark3;
+    private JTextField txtTotal;
+    private JTextField txtAVG;
+    private JTextField txtGrade;
+    private JPanel Main;
+
+    public static void main(String[] args) {
+        JFrame frame = new JFrame("Student");
+        frame.setContentPane(new Student().Main);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.pack();
+        frame.setVisible(true);
+    }
+
+    public Student() {
+    CALButton.addActionListener (new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+
+            int m1, m2, m3, total;
+            double avg;
+
+
+            m1 = Integer.parseInt(txtMark1.getText());
+            m2 = Integer.parseInt(txtMark2.getText());
+            m3 = Integer.parseInt(txtMark3.getText());
+
+//            Calculate total marks
+            total = m1 + m2 + m3;
+
+            txtTotal.setText(String.valueOf(total));
+
+//             Calculate Average
+            avg = total/3;
+
+            txtAVG.setText(String.valueOf(avg));
+
+
+//            Check pass validity
+            if (avg < 50){
+                txtGrade.setText("Fail");
+            } else if (avg < 75) {
+                txtGrade.setText("Good");
+            } else{
+                txtGrade.setText("Excellent");
+            }
+
+        }
+    });
+}
+}
